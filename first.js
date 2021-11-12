@@ -1,21 +1,30 @@
-function LetterChanges(str) { 
 
-    var alphabet = "abcdefghijklmnopqrstuvwxyz";
-    var newString = "";
-    var letterIndex;
+
+function LetterChanges(str) { 
   
-    for (var i = 0; i < str.length; i++) {
-      letterIndex = alphabet.indexOf(str[i]);
-      if (letterIndex === 25) {
-        newString = newString + "a";
-      } else if (letterIndex === -1) {
-        newString = newString + str[i];
-      } else {          
-        newString = newString + alphabet[letterIndex + 1];
+  let strArray = str.toLowerCase().split("");
+  let letterChange = strArray.map(function(value, index, array){
+    if( str.charCodeAt(index) > 122){
+      return value
+    }else{
+      if (str.charCodeAt(index) < 97 ){
+        return String.fromCharCode(str.charCodeAt(index)+1).toLowerCase()
+      } else{
+        return String.fromCharCode(str.charCodeAt(index)+1)
       }
+      
     }
-    
-    return newString.replace(/[aeiou]/g, function(letter) {return letter.toUpperCase()});  
+  });
+  
+  letterChange = letterChange.map(function(value, index, array){
+    if(/[aeiou]/.test(value)){
+      return value.toUpperCase();
+    }else{
+      return value;
+    }
+  });
+  
+  return letterChange.join(""); 
 }
 
-console.log(LetterChanges("chath21ura"));
+console.log(LetterChanges("ChathuraPrabashwara"));

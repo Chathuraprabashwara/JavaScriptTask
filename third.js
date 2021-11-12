@@ -1,37 +1,30 @@
 function ScaleBalancing(strArr) {
-//  console.log(strArr[0][0])  
- var x = strArr[0][0]
- var y = strArr[0][1]
- var z = strArr[1]
- var length= strArr[1].length
- console.log(length)
- for (var i=0 ; i <length; i++){
+    const a1 = JSON.parse(strArr[0])[0];
+    const a2 = JSON.parse(strArr[0])[1];
+    let weights = JSON.parse(strArr[1]);
+    for (let i = 0; i < weights.length; i++) {
+        if (a1 + weights[i] === a2 || a2 + weights[i] === a1) {   
+            if (a1 > a2){
+                return 'add right side ' + weights[i]; 
+            } 
+            else{
+                return 'add left side ' + weights[i]; 
+            }     
+           
+        }
      
-    var p = x + z[i];
-    // console.log(p)
-    if (p ==y ){
-       console.log(`left side add ${z[i]} and right side add 0 `) 
-    }
-    else {
-        for (var t=0; t< length; t++){
-            var q = y + z[t]
-            // console.log(q)
-            // console.log(p)
-            if(q==p){
-                console.log(`left side add ${z[i]} right side add ${z[t]}`)
+        for (let j = i + 1; j < weights.length; j++) {
+            if (a1 + weights[i] + weights[j] === a2 ||
+                a2 + weights[i] + weights[j] === a1 ||
+                a1 + weights[i] === a2 + weights[j] ||
+                a2 + weights[i] === a1 + weights[j]) {
+                return ' left side add ' + weights[i] + ',  right side add ' + weights[j]; 
             }
-        //    else{
-        //        console.log("not possible")
-        //    }
-
         }
     }
-     
-
- }
- return 
- 
- console.log(p)
+    return 'not possible';
 }
 
-ScaleBalancing([[3, 4], [1, 2, 2, 7]])
+console.log(ScaleBalancing(["[1, 6]", "[1, 5,2, 7]"]));
+     
+    

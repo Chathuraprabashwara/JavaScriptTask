@@ -50,7 +50,9 @@ function MaximalSquare(strArr) {
     console.log(`Output : ${maxArea}`);
 }
 
-MaximalSquare([[0, 1, 1,  1],  
-                [1, 1, 1,  1],  
-                [0, 1, 1,  1]]
+MaximalSquare([[1, 1, 1,  1],  
+                [1, 1, 1, 1],  
+                [1, 1, 1,  1],
+                [1, 1, 1, 1],
+                ]
 )
